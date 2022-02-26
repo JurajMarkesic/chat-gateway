@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-chat
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - path: /socket?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: chat-socket-service
+                port:
+                  number: 3005
