@@ -1,0 +1,12 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: kong-ingress-config
+proxy:
+  read_timeout: 300000
+  write_timeout: 300000
+upstream:
+  algorithm: consistent-hashing
+  hash_on: header
+  hash_on_header: x-forwarded-for
+  hash_fallback: ip
